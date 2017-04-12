@@ -27,7 +27,10 @@ test('should link to contact information.', function(assert){
 });
 
 test('should list available rentals', function(assert){
-
+    visit('/');
+    andThen(function(){
+        assert.equal(find('.listing').length, 3, 'should see three listings');
+    });
 });
 
 test('should filter the list of rentals bt city', function(assert){

@@ -2,7 +2,7 @@ export default function() {
   this.namespace = '/api';
   let rentals = [{
         type: 'rentals',
-        id: 'grant-old-mansion',
+        id: 'grand-old-mansion',
         attributes: {
           title: 'Grand Old Mansion',
           owner: 'Veruca Salt',
@@ -48,5 +48,9 @@ export default function() {
     } else {
       return { data: rentals };
     }
+  });
+
+  this.get('/rentals/:id', function(db, request){
+    return {data: rentals.find((rental) => request.params.id === rental.id)};
   });
 }

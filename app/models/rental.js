@@ -1,11 +1,26 @@
-import DS from 'ember-data';
+import Model, { attr } from '@ember-data/model';
 
-export default DS.Model.extend({
-    title: DS.attr(),
-    owner: DS.attr(),
-    city: DS.attr(),
-    type: DS.attr(),
-    image: DS.attr(),
-    bedrooms: DS.attr(),
-    description:DS.attr()
-});
+const COMMUNITY_CATEGORIES = [
+  'Condo',
+  'Townhouse',
+  'Apartment'
+];
+
+export default class RentalModel extends Model {
+  @attr title;
+  @attr owner;
+  @attr city;
+  @attr location;
+  @attr category;
+  @attr image;
+  @attr bedrooms;
+  @attr description;
+
+  get type() {
+    if (COMMUNITY_CATEGORIES.includes(this.category)) {
+      return 'Community';
+    } else {
+      return 'Standalone';
+    }
+  }
+}

@@ -1,7 +1,10 @@
-import Ember from 'ember';
+import Route from '@ember/routing/route';
+import { inject as service } from '@ember/service';
 
-export default Ember.Route.extend({
-    beforeModel() {
-        this.replaceWith('rentals');
-    }
-});
+export default class IndexRoute extends Route {
+  @service store;
+
+  async model() {
+    return this.store.findAll('rental');
+  }
+}
